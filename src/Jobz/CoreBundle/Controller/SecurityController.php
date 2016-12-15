@@ -56,6 +56,7 @@ class SecurityController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $user->setRoles('ROLE_USER');
             $em->persist($user);
             $em->flush();
             return $this->redirectToRoute('jobz_core_security_login');

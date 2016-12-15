@@ -1,0 +1,32 @@
+{% extends "CoreBundle::layout.html.twig" %}
+
+{% block section %}
+    <div id="content">
+        <div class="content">
+            <div id="jobs">
+                <div class="category">
+                    <h1>
+                        <a href="{{ path('jobz_core_category_show', { 'id': category.id }) }}">{{ category.categoryName }}</a>
+                    </h1>
+                </div>
+                <table class="jobs">
+                    <tbody>
+                    {% for job in jobs %}
+                        <tr class="odd">
+                            <td class="location">
+                                {{ job.location }}
+                            </td>
+                            <td class="position">
+                                <a href="{{ path('jobz_core_job_show', { 'id': job.id }) }}">{{ job.position }}</a>
+                            </td>
+                            <td class="company">
+                                {{ job.company }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -12,19 +12,30 @@ class JobRepository extends \Doctrine\ORM\EntityRepository
 {
     public function findLatest($num)
     {
-        $qb = $this->getQueryBuilder()
+        $em = $this->getEntityManager();
+
+        $qb = $em->getRepository('CoreBundle:Job')
+            ->createQueryBuilder('j')
             ->setMaxResults($num);
 
         return $qb->getQuery()->getResult();
     }
 
-    private function getQueryBuilder()
+    public function findByKeyword($keyword)
     {
         $em = $this->getEntityManager();
 
-        $qb = $em->getRepository('CoreBundle:Job')
-            ->createQueryBuilder('j');
+        $query = $em->createQuery(
+            "SELECT j
+			 FROM Jobz\CoreBundle\Entity\Job j
+			 WHERE j.location LIKE :keyword
+			 OR j.company LIKE :keyword
+			 OR j.position LIKE :keyword"
+        );
 
-        return $qb;
+        $query->setParameter('keyword', '%'.$keyword.'%');
+        return $query->getResult();
+
     }
 }
+

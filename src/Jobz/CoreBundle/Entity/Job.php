@@ -3,6 +3,7 @@
 namespace Jobz\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Job
@@ -24,7 +25,16 @@ class Job
     /**
      * @var string
      *
+     * @ORM\Column(name="company", type="string", length=255)
+     * @Assert\NotBlank
+     */
+    private $company;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $type;
 
@@ -39,6 +49,7 @@ class Job
      * @var string
      *
      * @ORM\Column(name="position", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $position;
 
@@ -46,13 +57,15 @@ class Job
      * @var string
      *
      * @ORM\Column(name="location", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $location;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Jobz\CoreBundle\Entity\Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
@@ -60,13 +73,23 @@ class Job
      * @var string
      *
      * @ORM\Column(name="job_description", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $jobDescription;
 
     /**
      * @var string
      *
+     * @ORM\Column(name="how_to_apply", type="string", length=255)
+     * @Assert\NotBlank
+     */
+    private $howToApply;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank
      */
     private $email;
 
@@ -74,11 +97,35 @@ class Job
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set company
+     *
+     * @param string $company
+     *
+     * @return Job
+     */
+    public function setCompany($company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return string
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 
     /**
@@ -178,30 +225,6 @@ class Job
     }
 
     /**
-     * Set category
-     *
-     * @param string $category
-     *
-     * @return Job
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set jobDescription
      *
      * @param string $jobDescription
@@ -223,6 +246,54 @@ class Job
     public function getJobDescription()
     {
         return $this->jobDescription;
+    }
+
+    /**
+     * Set howToApply
+     *
+     * @param string $howToApply
+     *
+     * @return Job
+     */
+    public function setHowToApply($howToApply)
+    {
+        $this->howToApply = $howToApply;
+
+        return $this;
+    }
+
+    /**
+     * Get howToApply
+     *
+     * @return string
+     */
+    public function getHowToApply()
+    {
+        return $this->howToApply;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \JobZ\CoreBundle\Entity\Category $category
+     *
+     * @return Job
+     */
+    public function setCategory(\Jobz\CoreBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \JobZ\CoreBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
     /**
@@ -249,4 +320,3 @@ class Job
         return $this->email;
     }
 }
-

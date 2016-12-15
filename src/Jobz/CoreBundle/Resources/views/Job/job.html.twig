@@ -1,0 +1,31 @@
+{% extends "CoreBundle::layout.html.twig" %}
+
+{% block section %}
+    <div id="content">
+        <div class="content">
+            <div id="job">
+                <h1>
+                    {{ job.company }}
+                </h1>
+                <h2>
+                    {{ job.location }}
+                </h2>
+                <h3>
+                    {{ job.position }} <small>- {{ job.type }}</small>
+                </h3>
+                <div class="description">
+                   {{ job.jobDescription }}
+                </div>
+                <h4>
+                    How to apply?
+                </h4>
+                <p class="how_to_apply">
+                    {{ job.howToApply }}
+                </p>
+                <div class="meta">
+                    <small>posted on 12/05/2008</small>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
