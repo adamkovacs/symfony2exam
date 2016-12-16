@@ -1,0 +1,39 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Jobs list{% endblock %}
+
+{% block section %}
+    <h1>Jobs list</h1>
+
+    <table class="record_properties">
+        <thead>
+        <tr>
+            <th>Company</th>
+            <th>Type</th>
+            <th>Position</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td>{{ job.company }}</td>
+                <td>{{ job.type }}</td>
+                <td>{{ job.position }}</td>
+                <td>{{ job.location }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('jobz_admin_job_show', { 'id': job.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('jobz_admin_job_edit', { 'id': job.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block section %}
+    <h1>Categories</h1>
+
+    <table class="record_properties">
+        <thead>
+        <tr>
+            <th>Category name</th>
+            <th>Category description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cat in categories %}
+            <tr>
+                <td>{{ cat.categoryName }}</td>
+                <td>{{ cat.categoryDescription }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('jobz_admin_category_edit', { 'id': cat.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

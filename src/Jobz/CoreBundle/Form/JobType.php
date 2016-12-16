@@ -25,14 +25,14 @@ class JobType extends AbstractType
             ->add('position')
             ->add('type', 'choice', array(
                 'choices'  => array(
-                    'Full-time',
-                    'Part-time',
-                    'Freelance',
+                    'Full-time' => 'Full-time',
+                    'Part-time' => 'Part-time',
+                    'Freelance' => 'Freelance',
                 ),
             ))
             ->add('location')
             ->add('url')
-            ->add('jobDescription')
+            ->add('jobDescription', 'textarea')
             ->add('howToApply')
             ->add('email');
     }

@@ -37,6 +37,7 @@ security:
             logout:
                 path: jobz_core_security_logout
                 target: jobz_core_job_index
+            access_denied_url: access_denied
 
             # activate different ways to authenticate
 
@@ -45,3 +46,6 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+    access_control:
+          - { path: ^/admin/, roles: ROLE_SUPER_ADMIN }

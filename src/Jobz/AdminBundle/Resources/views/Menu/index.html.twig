@@ -1,0 +1,39 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Menu list{% endblock %}
+
+{% block section %}
+    <h1>Menu list</h1>
+
+    <table class="record_properties">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Position</th>
+            <th>Information</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for menu in menus %}
+            <tr>
+                <td>{{ menu.title }}</td>
+                <td>{{ menu.position }}</td>
+                <td>{{ menu.information.title }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('jobz_admin_menu_edit', { 'id': menu.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('jobz_admin_menu_new') }}">Create a new menu</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -81,6 +81,11 @@ class JobController extends Controller
     {
         $job = new Job();
         $user = $this->getUser();
+        if($user == null) {
+            return $this->render(
+                'CoreBundle:Job:fail.html.twig'
+            );
+        }
         $job->setEmail($user->getEmail());
         $form = $this->createForm('Jobz\CoreBundle\Form\JobType', $job);
         $form->handleRequest($request);

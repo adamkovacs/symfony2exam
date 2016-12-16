@@ -1,0 +1,4 @@
+
+{% for menu in menus %}
+    <li><a href="{{ path('jobz_core_information_index', { 'id': menu.information.id }) }}">{{ menu.information.title }}</a></li>
+{% endfor %}

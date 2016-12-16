@@ -8,3 +8,5 @@ core:
     type:     annotation
     prefix:   /
 
+access_denied:
+    path: /fail_permission

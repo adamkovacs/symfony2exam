@@ -1,0 +1,37 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Informations{% endblock %}
+
+{% block section %}
+    <h1>Informations</h1>
+
+    <table class="record_properties">
+        <thead>
+        <tr>
+            <th>Information title</th>
+            <th>information description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for inf in informations %}
+            <tr>
+                <td>{{ inf.title }}</td>
+                <td>{{ inf.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('jobz_admin_information_edit', { 'id': inf.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('jobz_admin_information_new') }}">Create a new information</a>
+        </li>
+    </ul>
+{% endblock %}

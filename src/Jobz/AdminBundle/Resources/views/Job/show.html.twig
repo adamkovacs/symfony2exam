@@ -1,0 +1,43 @@
+{% extends 'AdminBundle::layout.html.twig' %}
+
+{% block title %}Show Job{% endblock %}
+
+{% block section %}
+    <h1>Show Job</h1>
+    <div id="job">
+        <h3>
+            {{ job.company }}
+        </h3>
+        <h3>
+            {{ job.location }}
+        </h3>
+        <h3>
+            {{ job.position }} <small>- {{ job.type }}</small>
+        </h3>
+        <div class="description">
+            {{ job.jobDescription }}
+        </div>
+        <h3>
+            How to apply?
+        </h3>
+        <p class="how_to_apply">
+            {{ job.howToApply }}
+        </p>
+        <div class="meta">
+            <small>posted on 12/05/2008</small>
+        </div>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('jobz_admin_job_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('jobz_admin_job_edit', { 'id': job.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

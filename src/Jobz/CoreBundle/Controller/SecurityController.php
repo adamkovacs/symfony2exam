@@ -71,6 +71,16 @@ class SecurityController extends Controller
     }
 
     /**
+     * @Route("/fail_permission")
+     */
+    public function failPermissionAction()
+    {
+        return $this->render(
+            'CoreBundle:Security:fail_permission.html.twig'
+        );
+    }
+
+    /**
      * Login check
      *
      * @Route("/login_check")

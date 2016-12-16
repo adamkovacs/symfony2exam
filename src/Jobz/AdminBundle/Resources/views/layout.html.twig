@@ -1,0 +1,24 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/admin/css/main.css') }}">
+{% endblock %}
+
+{% block body %}
+    <header>
+        <p>JobZ - Admin</p>
+        <nav>
+            <ul>
+                <li><a href="{{ path('jobz_core_job_index') }}">Back to frontend</a></li>
+                <li><a href="{{ path('jobz_admin_job_index') }}">Jobs</a></li>
+                <li><a href="{{ path('jobz_admin_category_index') }}">Categories</a></li>
+                <li><a href="{{ path('jobz_admin_information_index') }}">Informations</a></li>
+                <li><a href="{{ path('jobz_admin_menu_index') }}">Menus</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        {% block section %}{% endblock %}
+    </section>
+{% endblock %}

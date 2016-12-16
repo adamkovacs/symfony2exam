@@ -5,23 +5,27 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/core/css/jobs.css') }}">
 {% endblock %}
 
-
-
 {% block body %}
 
     <div id="container">
         <div id="header">
             <div class="nav">
                 <ul>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/registration">Registration</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('jobz_core_security_logout') }}">Logout</a></li>
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <li><a href="{{ path('jobz_admin_job_index')}}">Admin</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('jobz_core_security_login')}}">Login</a></li>
+                        <li><a href="{{ path('jobz_core_security_register')}}">Registration</a></li>
+                    {% endif %}
+
                 </ul>
             </div>
             <div class="nav-menu">
                 <ul>
-                    <li><a href="/information">About us</a></li>
-                    <li><a href="/information">Posting a job</a></li>
-                    <li><a href="/information">Became a member</a></li>
+                    {{ render(controller('CoreBundle:Menu:header'))}}
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -59,18 +63,7 @@
         <div id="footer">
             <div class="content">
                 <ul>
-                    <li>
-                        <a href="/information">About us</a>
-                    </li>
-                    <li class="feed">
-                        <a href="/information">Contact</a>
-                    </li>
-                    <li>
-                        <a href="/information">JobZ API</a>
-                    </li>
-                    <li class="last">
-                        <a href="/information">Affiliates</a>
-                    </li>
+                    {{ render(controller('CoreBundle:Menu:footer'))}}
                 </ul>
             </div>
         </div>
